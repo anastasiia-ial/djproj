@@ -23,7 +23,7 @@ class Routing (models.Model):
     raw_title = models.CharField(max_length=3)#ссылка на наименование сырья
    
 
-class Changes (models.Model):
+class Change (models.Model):
     code = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)#номер изменения 
     old_raw = models.CharField(max_length=3)#старый артикул сырья
     new_raw = models.CharField(max_length=3)#новый артикул сырья
