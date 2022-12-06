@@ -9,4 +9,6 @@ def gen(request):
 def add(request):
    return render(request, 'main/add.html')
     
+def list(request):
+   return render(request, 'main/list.html')
 
