@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import Raw, Change
 
 def status(request):
-    return render(request, 'main/status.html')
+    changes=Change.objects.all()
+    return render(request, 'main/status.html',{'changes':changes})
     
 def gen(request):
     return render(request, 'main/gen.html')
