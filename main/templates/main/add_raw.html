@@ -3,9 +3,9 @@
 {% block title%} 
 Список сырья
 {%endblock%}
-
+<br>
 {% block content%}
-
+<br>
 <div class="container">
     <form method="POST" action = "{% url 'add_raw' %}">
      {% csrf_token %}   
@@ -22,24 +22,4 @@
             <button type="submit" class="btn btn-primary">Добавить</button>
           </div>
       </form>
-      <br>
-      <div class="container">
-    <table class="table table-bordered">
-
-    {% for raw in raws %}
-    <thead>
-        <tr>
-            <td>{{ raw.num }}</td>
-            <td>{{ raw.name }}</td>
-            <td>{{ raw.layer }}</td>
-            <td >
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="/" type="button" class="btn btn-primary" >Перейти</a>
-                    </div>
-             </td>
-             </tr>
-             </thead>
-    {% endfor %}
-    </table>
-    </div>
 {%endblock%}
