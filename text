@@ -1,0 +1,14 @@
+{% for raw in raws %}
+<thead>
+    <tr>
+        <td>{{ raw.num }}</td>
+        <td>{{ raw.name }}</td>
+        <td>{{ raw.layer }}</td>
+        <td >
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="/" type="button" class="btn btn-primary" >Перейти</a>
+                </div>
+         </td>
+         </tr>
+         </thead>
+{% endfor %}
