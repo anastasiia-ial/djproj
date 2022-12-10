@@ -5,11 +5,11 @@ from django.utils import timezone
 
 class Raw (models.Model):
     num = models.CharField(max_length=200)#артикул сырья
-    list = models.CharField(max_length=200)#наименование
+    name = models.CharField(max_length=200)#наименование
     layer = models.CharField(max_length=200)#навзвание слоя на русском
 
     def __str__(self):
-       return self.num +' '+ self.title
+       return self.num +' '+ self.name
 
 # class Sku (models.Model):
 #     num = models.CharField( on_delete=models.CASCADE)#артикул готоваой продукции (ГП)
