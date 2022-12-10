@@ -4,9 +4,9 @@ from django.utils import timezone
 
 
 class Raw (models.Model):
-    num = models.CharField(max_length=200)#артикул сырья
-    title = models.CharField(max_length=200)#наименование
-    rtitle = models.CharField(max_length=200)#навзвание слоя на русском
+    number = models.CharField(max_length=200)#артикул сырья
+    list = models.CharField(max_length=200)#наименование
+    layer = models.CharField(max_length=200)#навзвание слоя на русском
 
     def __str__(self):
        return self.num +' '+ self.title
@@ -23,15 +23,23 @@ class Raw (models.Model):
 #     raw_title = models.CharField(max_length=3)#ссылка на наименование сырья
    
 
-class Change (models.Model):
-    id = models.BigAutoField(primary_key=True) #номер изменения 
-    old_raw = models.ForeignKey(Raw, on_delete=models.CASCADE)#старый артикул сырья
-    # old_raw = models.CharField(max_length=13)#старый артикул сырья
-    new_raw = models.CharField(max_length=13)#новый артикул сырья
-    # title = models.CharField(max_length=200)#наименование
-    # rtitle = models.CharField(max_length=200)#навзвание слоя на русском
-    status = models.BooleanField()#статус
-    created_date = models.DateTimeField(default=timezone.now)#когда была создана заявка
+# class Raw (models.Model):
+#     number = models.CharField(max_length=200)#артикул сырья
+#     list = models.CharField(max_length=200)#наименование
+#     layer = models.CharField(max_length=200)#навзвание слоя на русском
 
-    # def __str__(self):
-    #     return self.id
+#     def __str__(self):
+#        return self.num +' '+ self.title
+# class Change (models.Model):
+   
+#     # id = models.BigAutoField(primary_key=True) #номер изменения 
+#     # old_raw = models.ForeignKey(Raw, on_delete=models.CASCADE)#старый артикул сырья
+#     # old_raw = models.CharField(max_length=13)#старый артикул сырья
+#     new_raw = models.CharField(max_length=13)#новый артикул сырья
+#     # title = models.CharField(max_length=200)#наименование
+#     # rtitle = models.CharField(max_length=200)#навзвание слоя на русском
+#     status = models.BooleanField()#статус
+#     created_date = models.DateTimeField(default=timezone.now)#когда была создана заявка
+
+#     # def __str__(self):
+#     #     return self.id
