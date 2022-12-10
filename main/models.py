@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Raw (models.Model):
-    number = models.CharField(max_length=200)#артикул сырья
+    num = models.CharField(max_length=200)#артикул сырья
     list = models.CharField(max_length=200)#наименование
     layer = models.CharField(max_length=200)#навзвание слоя на русском
 

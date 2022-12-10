@@ -1,12 +1,43 @@
 {% extends 'main/base.html' %}
 
 {% block title%} 
-Список артикулов
+Список сырья
 {%endblock%}
 
 {% block content%}
+
 <div class="container">
-<table class="table table-bordered">
-</table>
-</div>
+    <form method="POST" >
+        <div class="row g-3">
+            <div class="col-sm-5">
+              <input type="text" class="form-control" placeholder="Артикул" name="num">
+            </div>
+            <div class="col-sm">
+              <input type="text" class="form-control" placeholder="Наименование" name="name">
+            </div>
+            <div class="col-sm">
+              <input type="text" class="form-control" placeholder="Слой" name="layer">
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="/" type="button" class="btn btn-primary">Добавить</a>
+            </div>
+          </div>
+      </form>
+    <table class="table table-bordered">
+    {% for raw in raws %}
+    <thead>
+        <tr>
+            <td>{{ raw.num }}</td>
+            <td>{{ raw.title }}</td>
+            <td>{{ raw.rtitle }}</td>
+            <td >
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="/" type="button" class="btn btn-primary" >Перейти</a>
+                    </div>
+             </td>
+             </tr>
+             </thead>
+    {% endfor %}
+    </table>
+    </div>
 {%endblock%}
