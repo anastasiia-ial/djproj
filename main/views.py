@@ -9,6 +9,7 @@ def add_raw(request):
         if form.is_valid():
             form.save()
             return render(request, 'main/add_raw.html')
+
     else:
          print ('hi')
          return render(request, 'main/add_raw.html')

@@ -3,6 +3,8 @@ from django.conf import settings
 from django.utils import timezone
 
 
+# Сырье
+
 class Raw (models.Model):
     num = models.CharField(max_length=200)#артикул сырья
     name = models.CharField(max_length=200)#наименование
@@ -10,35 +12,46 @@ class Raw (models.Model):
     def __str__(self):
        return self.num +' '+ self.name
 
-# class Sku (models.Model):
-#     num = models.CharField( on_delete=models.CASCADE)#артикул готоваой продукции (ГП)
-#     title = models.CharField(max_length=200)#наименование ГП
+# Код ГП
 
-# class Routing (models.Model):
-#     code = models.CharField(on_delete=models.CASCADE)#артикул маршрутной карты (МК)
-#     sku_num = models.ForeignKey(max_length=3)#ссылка на артикул ГП
-    # sku_title = models.CharField(max_length=3)#ссылка на наименование ГП
-#     raw_num = models.CharField(max_length=3)#ссылка на артикул сырья
-#     raw_title = models.CharField(max_length=3)#ссылка на наименование сырья
-   
+class Sku (models.Model):
+    num = models.CharField(max_length=200)#артикул готоваой продукции (ГП)
+    name = models.CharField(max_length=200)#наименование ГП
+    raw = models.ManyToManyField(Raw, blank=True, null=True)
+    
+    def __str__(self):
+       return self.num +' '+ self.name
 
-# class Raw (models.Model):
-#     number = models.CharField(max_length=200)#артикул сырья
-#     list = models.CharField(max_length=200)#наименование
-#     layer = models.CharField(max_length=200)#навзвание слоя на русском
+# Изменения в сырье
+
+class Change (models.Model):
+    number = models.CharField(max_length=200)
+    raw_id = models.ForeignKey(Raw,blank=True, null=True,on_delete=models.CASCADE)
+    status = models.BooleanField()#статус
+    created_date = models.DateTimeField(default=timezone.now)#когда была создана заявка
+
+    def __str__(self):
+         return self.number
+
+
+# Маршрутная карта
+
+# class Mk (models.Model):
+#     name = models.CharField(max_length=200)#номер маршрутной карты
+#     raw_id = models.ForeignKey(Raw, blank=True, null=True) # Mk.raw_id.num
+#     # raw_id = models.CharField(max_length=200)
+#     def __str__(self):
+#        return self.name +' '+ self.raw_id
+
+# Соединение кода ГП и МК
+
+# class Sku_Mk(models.Model):
+#     sku_id = models.ForeignKey(Sku, blank=True, null= True)
+#     mk_id = models.ForeignKey(Mk, blank=True, null=True)
 
 #     def __str__(self):
-#        return self.num +' '+ self.title
-# class Change (models.Model):
-   
-#     # id = models.BigAutoField(primary_key=True) #номер изменения 
-#     # old_raw = models.ForeignKey(Raw, on_delete=models.CASCADE)#старый артикул сырья
-#     # old_raw = models.CharField(max_length=13)#старый артикул сырья
-#     new_raw = models.CharField(max_length=13)#новый артикул сырья
-#     # title = models.CharField(max_length=200)#наименование
-#     # rtitle = models.CharField(max_length=200)#навзвание слоя на русском
-#     status = models.BooleanField()#статус
-#     created_date = models.DateTimeField(default=timezone.now)#когда была создана заявка
+#        return self.sku_id +' '+ self.mk_id
 
-#     # def __str__(self):
-#     #     return self.id
+
+
+    
