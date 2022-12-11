@@ -25,9 +25,9 @@ def gen(request):
 def add(request):
    return render(request, 'main/add.html')
     
-def list(request):
+def list_raw(request):
     raws=Raw.objects.all()
-    return render(request, 'main/list.html',{'raws':raws})
+    return render(request, 'main/list_raw.html',{'raws':raws})
 
 
 
