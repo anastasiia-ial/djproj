@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Raw
+from .models import Raw, Sku
 from .forms import RawForm
 
 
@@ -29,6 +29,9 @@ def list_raw(request):
     raws=Raw.objects.all()
     return render(request, 'main/list_raw.html',{'raws':raws})
 
+def list_sku(request):
+    skus=Sku.objects.all()
+    return render(request, 'main/list_sku.html',{'skus':skus})
 
 
 

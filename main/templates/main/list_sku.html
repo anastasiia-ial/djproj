@@ -7,15 +7,14 @@
 {% block content%}
 <div class="container">
 <table class="table table-bordered">
-{% for raw in raws %}
+{% for sku in skus %}
 <thead>
     <tr>
-        <td>{{ raw.num }}</td>
-        <td>{{ raw.name }}</td>
-        <td>{{ raw.layer }}</td>
+        <td>{{ sku.num }}</td>
+        <td>{{ sku.name }}</td>
         <td >
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="/" type="button" class="btn btn-primary" >Удалить</a>
+                    <a href="/" type="button" class="btn btn-primary" >Просмотреть</a>
                 </div>
          </td>
          </tr>
