@@ -5,31 +5,23 @@
 {%endblock%}
 
 {% block content%}
-   
 <body>
     <div class="container">
-        <h2>Артикул B0101543 BD MT NANI PREM MAXI 54PCS. Сырье для внесения:</h2>
-    
+        <h2>Артикул {{sku.num}} {{sku.name}} . Сырье для внесения:</h2>
+       
         <table class="table table-bordered">
             <thead>
+                {% for raw in sku.raw.all %}
             <tr>
-                <td>RC020032</td>
-                <td>SAP OC EK-X EN72A</td>
+                <td>{{ raw.num }}</td>
+                <td>{{ raw.name }}</td>
                 <td >
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="#" type="button" class="btn btn-primary" >Выполнено</a>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td>RA020012</td>
-                <td>GLUE CONSTRU FOCUS T178</td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="#" type="button" class="btn btn-danger" >Не выполнено</a>
-                    </div>
-                </td>
-            </tr>
+            {% endfor %}
             </thead>
         </table>
         </div>

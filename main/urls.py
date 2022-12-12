@@ -8,4 +8,5 @@ urlpatterns = [
  path('list_raw', views.list_raw, name='list_raw'),
  path('add_raw', views.add_raw, name='add_raw'),
  path('list_sku', views.list_sku, name='list_sku'),
+ path('show_sku/<sku_id>', views.show_sku, name='show_sku'),
 ]

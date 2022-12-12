@@ -5,6 +5,7 @@
 {%endblock%}
 
 {% block content%}
+<br>
 <div class="container">
 <table class="table table-bordered">
 {% for sku in skus %}
@@ -14,7 +15,7 @@
         <td>{{ sku.name }}</td>
         <td >
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="/" type="button" class="btn btn-primary" >Просмотреть</a>
+                    <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary" >Просмотреть</a>
                 </div>
          </td>
          </tr>
