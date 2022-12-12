@@ -17,7 +17,9 @@ class Raw (models.Model):
 class Sku (models.Model):
     num = models.CharField(max_length=200)#артикул готоваой продукции (ГП)
     name = models.CharField(max_length=200)#наименование ГП
-    raw = models.ManyToManyField(Raw, blank=True, null=True)
+    raw = models.ManyToManyField(Raw, blank=True, null=True) #сырье
+    weight = models.IntegerField(max_length=3)# вес
+    photo = models.IntegerField(max_length=3)#фото
     
     def __str__(self):
        return self.num +' '+ self.name
