@@ -18,6 +18,11 @@
                     <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary" >Просмотреть</a>
                 </div>
          </td>
+         <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary" >Удалить</a>
+            </div>
+         </td>
          </tr>
          </thead>
 {% endfor %}

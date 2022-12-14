@@ -1,5 +1,7 @@
 from  django import forms
-from .models import Raw, Sku
+from django.forms import ModelForm
+from .models import *
+
 
 class RawForm(forms.ModelForm):
     class Meta:
@@ -9,4 +11,19 @@ class RawForm(forms.ModelForm):
 class SkuForm(forms.ModelForm):
     class Meta:
         model = Sku
-        fields = ['num', 'name', 'raw','weight','photo']
+        fields = ('num', 'name', 'raw','weight','photo')
+        labels = {
+            'num':'',
+            'name': '',
+            'raw':'Сырье ',
+            'weight':'',
+            'photo':'',
+        }
+
+        widgets = {
+            'num':forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Артикул'}),
+            'name':forms.TextInput(attrs={'class': 'form-control','placeholder': 'Наименование'}),
+            'raw':forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'weight':forms.TextInput(attrs={'class': 'form-control','placeholder': 'Вес'}),
+            'photo':forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Фото'}),
+        }

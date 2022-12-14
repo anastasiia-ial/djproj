@@ -10,5 +10,4 @@ urlpatterns = [
  path('list_sku', views.list_sku, name='list_sku'),
  path('show_sku/<sku_id>', views.show_sku, name='show_sku'),
  path('add_sku', views.add_sku, name='add_sku'),
- 
 ]
