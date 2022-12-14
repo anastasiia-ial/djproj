@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import *
-from .forms import RawForm
+from .forms import SkuForm, RawForm
 
 
 def add_raw(request):
@@ -37,3 +37,13 @@ def show_sku(request, sku_id):
     sku = Sku.objects.get(id=sku_id)
     return render(request, 'main/show_sku.html',{'sku':sku})
 
+def add_sku(request):
+    if request.method == 'POST':
+        form = SkuForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return render(request, 'main/add_sku.html')
+
+    else:
+         print ('hi')
+         return render(request, 'main/add_sku.html')
