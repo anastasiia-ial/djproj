@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block title%} 
+Изменить сырье {{raw.num}} {{raw.name}}
+{%endblock%}
+<br>
+{% block content%}
+
+<br>
+<div class="container">
+  <h1> Изменить сырье {{raw.num}} {{raw.name}}</h1>
+  
+  <form action="" method="POST">
+  {% csrf_token %}
+
+  {{form.as_p}}
+  <input type="submit" value="Изменить" class = "btn btn-secondary">
+{%endblock%}

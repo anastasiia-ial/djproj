@@ -2,6 +2,17 @@ from django.shortcuts import render
 from .models import *
 from .forms import *
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+
+
+def update_raw(request, raw_id):
+    raw = Raw.objects.get(id=raw_id)
+    form = RawForm (request.POST or None, instance=raw)
+    if form.is_valid():
+            form.save()
+            return redirect ('list_raw')
+        
+    return render(request, 'main/update_raw.html',{'raw':raw, 'form':form})
 
 
 def add_raw(request):

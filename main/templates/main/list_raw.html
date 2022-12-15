@@ -13,10 +13,15 @@
         <td>{{ raw.num }}</td>
         <td>{{ raw.name }}</td>
         <td>{{ raw.layer }}</td>
-        <td >
+        <td align="right">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="#" type="button" class="btn btn-primary" >Удалить</a>
+                    <a href="{% url 'update_raw' raw.id %}" type="button" class="btn btn-primary" >Изменить</a>
                 </div>
+                </td>
+                <td align="right">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="" type="button" class="btn btn-primary" >Удалить</a>
+            </div>
          </td>
          </tr>
          </thead>
