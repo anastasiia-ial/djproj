@@ -4,6 +4,12 @@ from .forms import *
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 
+def delete_raw(request, raw_id):
+    raw = Raw.objects.get(id=raw_id)
+    raw.delete()
+    return redirect ('list_raw')
+        
+    return render(request, 'main/update_raw.html',{'raw':raw})
 
 def update_raw(request, raw_id):
     raw = Raw.objects.get(id=raw_id)
