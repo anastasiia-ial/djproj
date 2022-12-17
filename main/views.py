@@ -10,19 +10,37 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
-def pdf_sku(request):
-    template_path = 'pdf_sku_printer.html'
-    context = {'myvar': 'this is your template context'}
+# def pdf_sku(request,sku_id):
+#     sku = Sku.objects.get(id=sku_id)
+#     template_path = 'pdf_sku.html'
+#     context = {'sku': 123}
+#     # Create a Django response object, and specify content_type as pdf
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+#     # find the template and render it.
+#     template = get_template(template_path)
+#     html = template.render(context)
+#     # create a pdf
+#     pisa_status = pisa.CreatePDF(
+#        html, dest=response)
+#     # if error then show some funny view
+#     if pisa_status.err:
+#        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+#     return response
+    
+def pdf_sku(request,sku_id):
+    sku = Sku.objects.get(id=sku_id)
+    template_path = 'main/pdf_sku.html'
+    context = {'sku': sku}
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
-
     # create a pdf
     pisa_status = pisa.CreatePDF(
-       html, dest=response, link_callback=link_callback)
+       html, dest=response)
     # if error then show some funny view
     if pisa_status.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')

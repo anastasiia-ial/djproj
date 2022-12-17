@@ -1,10 +1,5 @@
-{% extends 'main/base.html' %}
 
-{% block title%}
 Артикул {{sku.num}} {{sku.name}}
-{%endblock%}
-
-{% block content%}
 
 <body>
     <br>
@@ -15,9 +10,9 @@
         <br>
         <h3>Чертеж: </h3>
         {%if sku.photo%}
-        <img src="{{sku.photo.url}}">
+            <img src="{{sku.photo.path}}" height="500 px">
         {%else%}
-        Нет чертежа продкуции
+            Нет чертежа продкуции
         {%endif%}
 
         <br>
@@ -25,12 +20,12 @@
         <table class="table table-bordered">
             <thead>
                 {% for raw in sku.raw.all %}
-                <tr>
-                    <td>{{ raw.num }}</td>
-                    <td>{{ raw.name }}</td>
-                    <td>{{ raw.layer }}</td>
+                    <tr>
+                        <td>{{ raw.num }}</td>
+                        <td>{{ raw.name }}</td>
+                        <td>{{ raw.layer }}</td>
                     </td>
-                </tr>
+                    </tr>
                 {% endfor %}
             </thead>
         </table>
@@ -38,4 +33,3 @@
 </body>
 
 </html>
-{%endblock%}
