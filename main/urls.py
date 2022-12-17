@@ -14,5 +14,5 @@ urlpatterns = [
     path('update_sku/<sku_id>', views.update_sku, name='update_sku'),
     path('delete_raw/<raw_id>', views.delete_raw, name='delete_raw'),
     path('delete_sku/<sku_id>', views.delete_sku, name='delete_sku'),
-    # path('pdf_sku', views.pdf_sku, name='pdf_sku'),
+    path('pdf_sku', views.pdf_sku, name='pdf_sku'),
 ]

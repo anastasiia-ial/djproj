@@ -10,8 +10,8 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
-def render_pdf_view(request):
-    template_path = 'user_printer.html'
+def pdf_sku(request):
+    template_path = 'pdf_sku_printer.html'
     context = {'myvar': 'this is your template context'}
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
