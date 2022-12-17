@@ -4,42 +4,20 @@ from .forms import *
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 
-from django.http import FileResponse
-import io
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import cm
-from reportlab.lib.pagesizes import A4
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+# from django.http import FileResponse
+# import io
+# from reportlab.pdfgen import canvas
+# from reportlab.lib.units import cm
+# from reportlab.lib.pagesizes import A4
 
 
-def pdf_sku(request):
-    buf = io.BytesIO()
-    c = canvas.Canvas(buf, pagesize=A4, bottomup=0)
-    textobj = c.beginText()
-    textobj.setTextOrigin(cm, cm)
-    textobj.setFont('Helvetica', 14)
-
-    skus = Sku.objects.all()
-    lines = []
-    # lines=[
-    #     "line",
-    #     "ht",
-    #     "dfdfgd"
-    # ]
-    for sku in skus:
-        lines.append(sku.num)
-        lines.append(sku.name)
-    #     lines.append (sku.raw)
-        # lines.append (sku.weight)
-        # lines.append (sku.photo)
-
-    for line in lines:
-        textobj.textLine(line)
-
-    c.drawText(textobj)
-    c.showPage()
-    c.save()
-    buf.seek(0)
-    return FileResponse(buf, as_attachment=True, filename='MK.pdf')
+ 
 
 
 def delete_sku(request, sku_id):
@@ -115,17 +93,6 @@ def show_sku(request, sku_id):
     sku = Sku.objects.get(id=sku_id)
     return render(request, 'main/show_sku.html', {'sku': sku})
 
-# def add_sku(request):
-#     form = SkuForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#     # if request.method == 'POST':
-#     #     form = SkuForm (request.POST)
-#     #     context = {'form' : form}
-#     #     if form.is_valid():
-#     #         form.save()
-#     return render(request,'main/add_sku.html',{'form':form})
-
 
 def add_sku(request):
     submit = False
@@ -139,3 +106,83 @@ def add_sku(request):
         if 'submit' in request.GET:
             submit = True
     return render(request, 'main/add_sku.html', {'form': form, 'submit': submit})
+
+
+# def pdf_sku(request):
+#     buf = io.BytesIO()
+#     c = canvas.Canvas(buf, pagesize=A4, bottomup=0)
+
+#     # textobj = c.beginText()
+#     textobj = c.drawString(280,700,'sku.num')
+#     textobj = c.drawString(280,400,'sku.num')
+#     # textobj = c.drawString(280,700,)
+#     # textobj = c.drawString(280,700,)
+#     # textobj = c.drawString(280,700,)
+#     # textobj.setTextOrigin(cm, cm)
+#     # textobj.setFont('Helvetica', 14)
+#     # img = c.drawImage(298,432)
+
+#     skus = Sku.objects.all()
+#     # lines = []
+#     # lines=[
+#     #     "line",
+#     #     "ht",
+#     #     "dfdfgd"
+#     # ]
+#     # for sku in skus:
+#         # lines.append(sku.num)
+#         # lines.append(sku.name)
+#         # lines.append(sku.raw)
+#         # lines.append(sku.weight)
+#         # lines.append(sku.photo)
+
+#     # for line in lines:
+#         # textobj.textLine(line)
+#         # img.drawInlineimage(img)
+#     # c.drawString(textobj)
+#     # c.drawInlineImage(img)
+#     c.showPage()
+#     c.save()
+#     buf.seek(0)
+#     return FileResponse(buf, as_attachment=True, filename='MK.pdf')
+    # buf = io.BytesIO()
+    # c = canvas.Canvas(buf, pagesize=A4, bottomup=0)
+    # c.setTitle(sku.num+' '+sku.name)
+    # # textobj = c.beginText()
+    # # textobj.setTextOrigin(cm, cm)
+    # # textobj.setFont('Helvetica', 14)
+
+    # skus = Sku.objects.all()
+    # lines = []
+    # # lines=[
+    # #     "line",
+    # #     "ht",
+    # #     "dfdfgd"
+    # # ]
+    # for sku in skus:
+    #     lines.append(sku.num)
+    #     lines.append(sku.name)
+    # #     lines.append (sku.raw)
+    #     # lines.append (sku.weight)
+    #     # lines.append (sku.photo)
+
+    # for line in lines:
+    #     textobj.textLine(line)
+
+    # c.drawText(textobj)
+    # c.showPage()
+    # c.save()
+    # buf.seek(0)
+    # return FileResponse(buf, as_attachment=True, filename='MK.pdf')
+
+
+# def add_sku(request):
+#     form = SkuForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#     # if request.method == 'POST':
+#     #     form = SkuForm (request.POST)
+#     #     context = {'form' : form}
+#     #     if form.is_valid():
+#     #         form.save()
+#     return render(request,'main/add_sku.html',{'form':form})
