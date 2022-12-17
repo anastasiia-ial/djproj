@@ -1,37 +1,37 @@
 {% extends 'main/base.html' %}
 
-{% block title%} 
+{% block title%}
 Список артикулов ГП
 {%endblock%}
 
 {% block content%}
 <br>
 <div class="container">
-<table class="table table-bordered">
-{% for sku in skus %}
-<thead>
-    <tr>
-        <td>{{ sku.num }}</td>
-        <td>{{ sku.name }}</td>
-        <td align="right">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary" >Просмотреть</a>
-                </div>
-         </td>
-         <td align="right">
-         <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-primary" >Изменить</a>
-        </div>
-    </td>
-            <td align="right">
-                <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="{% url 'delete_sku' sku.id %}" type="button" class="btn btn-primary" >Удалить</a>
-        </div>
+    <table class="table table-bordered">
+        {% for sku in skus %}
+        <thead>
+            <tr>
+                <td>{{ sku.num }}</td>
+                <td>{{ sku.name }}</td>
+                <td align="right">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary">Просмотреть</a>
+                    </div>
+                </td>
+                <td align="right">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-primary">Изменить</a>
+                    </div>
+                </td>
+                <td align="right">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="{% url 'delete_sku' sku.id %}" type="button" class="btn btn-primary">Удалить</a>
+                    </div>
 
-         </td>
-         </tr>
-         </thead>
-{% endfor %}
-</table>
+                </td>
+            </tr>
+        </thead>
+        {% endfor %}
+    </table>
 </div>
 {%endblock%}

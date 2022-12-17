@@ -1,38 +1,36 @@
 {% extends 'main/base.html' %}
 
-{% block title%} 
+{% block title%}
 Артикул {{sku.num}} {{sku.name}}
 {%endblock%}
 
 {% block content%}
+
 <body>
     <div class="container">
         <h2>Артикул {{sku.num}} {{sku.name}} . Сырье для внесения:</h2>
-       
+
         <table class="table table-bordered">
             <thead>
                 {% for raw in sku.raw.all %}
-            <tr>
-                <td>{{ raw.num }}</td>
-                <td>{{ raw.name }}</td>
-                <td>{{ raw.layer }}</td>
-                <td >
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="#" type="button" class="btn btn-primary" >Выполнено</a>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
+                <tr>
+                    <td>{{ raw.num }}</td>
+                    <td>{{ raw.name }}</td>
+                    <td>{{ raw.layer }}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="#" type="button" class="btn btn-primary">Выполнено</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
             </thead>
         </table>
-        </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="{% url 'pdf_sku' %}" type="button" class="btn btn-primary" >Напечатать МК</a>
-        </div>
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{% url 'pdf_sku' %}" type="button" class="btn btn-primary">Напечатать МК</a>
+    </div>
 </body>
+
 </html>
 {%endblock%}
-
-
- 
-   

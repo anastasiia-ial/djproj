@@ -1,31 +1,29 @@
 {% extends 'main/base.html' %}
 
-{% block title%} 
+{% block title%}
 Список артикулов сырья
 {%endblock%}
 
 {% block content%}
 <div class="container">
-<table class="table table-bordered">
-{% for raw in raws %}
-<thead>
-    <tr>
-        <td>{{ raw.num }}</td>
-        <td>{{ raw.name }}</td>
-        <td>{{ raw.layer }}</td>
-        <td align="right">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{% url 'update_raw' raw.id %}" type="button" class="btn btn-primary" >Изменить</a>
-                </div>
-                </td>
+    <table class="table table-bordered">
+        {% for raw in raws %}
+        <thead>
+            <tr>
+                <td>{{ raw.num }}</td>
+                <td>{{ raw.name }}</td>
+                <td>{{ raw.layer }}</td>
                 <td align="right">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="{% url 'delete_raw' raw.id %}" type="button" class="btn btn-primary" >Удалить</a>
-            </div>
-         </td>
-         </tr>
-         </thead>
-{% endfor %}
-</table>
+                        <a href="{% url 'update_raw' raw.id %}" type="button" class="btn btn-primary">Изменить</a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="{% url 'delete_raw' raw.id %}" type="button" class="btn btn-primary">Удалить</a>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        {% endfor %}
+    </table>
 </div>
 {%endblock%}

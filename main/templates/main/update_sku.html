@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 
-{% block title%} 
+{% block title%}
 Изменить МК {{sku.num}} {{sku.name}}
 {%endblock%}
 <br>
@@ -9,11 +9,11 @@
 <br>
 <div class="container">
   <h1> Изменить МК {{sku.num}} {{sku.name}}</h1>
-  
+
   <form action="" method="POST">
-  {% csrf_token %}
+    {% csrf_token %}
 
-  {{form.as_p}}
+    {{form.as_p}}
 
-  <input type="submit" value="Изменить" class = "btn btn-secondary">
-{%endblock%}
+    <input type="submit" value="Изменить" class="btn btn-secondary">
+    {%endblock%}

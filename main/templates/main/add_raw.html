@@ -1,25 +1,25 @@
 {% extends 'main/base.html' %}
 
-{% block title%} 
+{% block title%}
 Добавить сырье
 {%endblock%}
 <br>
 {% block content%}
 <br>
 <div class="container">
-    <form method="POST" action = "{% url 'add_raw' %}">
-     {% csrf_token %}   
-        <div class="row g-3">
-            <div class="col-sm-3">
-              <input type="text" class="form-control" placeholder="Артикул" name="num">
-            </div>
-            <div class="col-sm">
-              <input type="text" class="form-control" placeholder="Наименование" name="name">
-            </div>
-            <div class="col-sm">
-              <input type="text" class="form-control" placeholder="Слой" name="layer">
-            </div>
-            <button type="submit" class="btn btn-primary">Добавить</button>
-          </div>
-      </form>
-{%endblock%}
+  <form method="POST" action="{% url 'add_raw' %}">
+    {% csrf_token %}
+    <div class="row g-3">
+      <div class="col-sm-3">
+        <input type="text" class="form-control" placeholder="Артикул" name="num">
+      </div>
+      <div class="col-sm">
+        <input type="text" class="form-control" placeholder="Наименование" name="name">
+      </div>
+      <div class="col-sm">
+        <input type="text" class="form-control" placeholder="Слой" name="layer">
+      </div>
+      <button type="submit" class="btn btn-primary">Добавить</button>
+    </div>
+  </form>
+  {%endblock%}
