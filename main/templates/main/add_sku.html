@@ -5,13 +5,15 @@
 {%endblock%}
 <br>
 {% block content%}
-
+<div class="container">
 <h1> Создание Маршрутной карты</h1>
+</div>
 <br>
 {% if submit%}
-МК
+МК создана
 {%else%}
-    <form method="POST" action = "{% url 'add_sku' %}">
+<div class="container">
+    <form method="POST" action = "{% url 'add_sku' %}" enctype="multipart/form-data">
      {% csrf_token %}   
      <br>
       {{form}}
@@ -19,6 +21,6 @@
             <input type="submit" value = Добавить class="btn btn-primary">
          
       </form>
-
+<div>
       {%endif%}
 {%endblock%}

@@ -25,5 +25,4 @@ class SkuForm(forms.ModelForm):
             'name':forms.TextInput(attrs={'class': 'form-control','placeholder': 'Наименование'}),
             'raw':forms.SelectMultiple(attrs={'class': 'form-control'}),
             'weight':forms.TextInput(attrs={'class': 'form-control','placeholder': 'Вес'}),
-            'photo':forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Фото'}),
         }

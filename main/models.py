@@ -19,7 +19,7 @@ class Sku (models.Model):
     name = models.CharField(max_length=200)#наименование ГП
     raw = models.ManyToManyField(Raw, blank=True, null=True) #сырье
     weight = models.IntegerField(blank=True, null=True)# вес
-    photo = models.IntegerField(blank=True, null=True)#фото
+    photo = models.ImageField(blank=True, null=True, upload_to="images/")#фото
     
     def __str__(self):
        return self.num +' '+ self.name

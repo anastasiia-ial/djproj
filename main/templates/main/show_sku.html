@@ -6,9 +6,21 @@
 
 {% block content%}
 <body>
+    <br>
     <div class="container">
-        <h2>Артикул {{sku.num}} {{sku.name}} . Сырье для внесения:</h2>
-       
+        <h1>Маршрутная карта для выпуска подукции <br>{{sku.num}} {{sku.name}} </h1>
+       <br>
+    <h3>Вес продкции: {{sku.weight}} гр</h3>
+    <br>
+    <h3>Чертеж:  </h3>
+        {%if sku.photo%}
+        <img src="{{sku.photo.url}}">
+        {%else%}
+        Нет чертежа продкуции
+        {%endif%}
+
+    <br>
+    <h3>Сырье:</h3>
         <table class="table table-bordered">
             <thead>
                 {% for raw in sku.raw.all %}
@@ -16,18 +28,18 @@
                 <td>{{ raw.num }}</td>
                 <td>{{ raw.name }}</td>
                 <td>{{ raw.layer }}</td>
-                <td >
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="#" type="button" class="btn btn-primary" >Выполнено</a>
-                    </div>
                 </td>
             </tr>
             {% endfor %}
             </thead>
         </table>
+      
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-primary" >Изменить</a>
         </div>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="#" type="button" class="btn btn-primary" >Напечатать МК</a>
+            <a href="{% url 'delete_sku' sku.id %}" type="button" class="btn btn-primary" >Удалить</a>
+        </div>
         </div>
 </body>
 </html>
