@@ -1,50 +1,42 @@
+from unittest import result
+from urllib import response
 from django.shortcuts import render
 from .models import *
 from .forms import *
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect
 
-import os
-from django.conf import settings
-from django.http import HttpResponse
-from django.template.loader import get_template
-from xhtml2pdf import pisa
+from weasyprint import HTML
+from django.template.loader import render_to_string
+import tempfile
+import codecs
+from datetime import datetime
+from django.template import Context, Template
 
-# def pdf_sku(request,sku_id):
-#     sku = Sku.objects.get(id=sku_id)
-#     template_path = 'pdf_sku.html'
-#     context = {'sku': 123}
-#     # Create a Django response object, and specify content_type as pdf
-#     response = HttpResponse(content_type='application/pdf')
-#     response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-#     # find the template and render it.
-#     template = get_template(template_path)
-#     html = template.render(context)
-#     # create a pdf
-#     pisa_status = pisa.CreatePDF(
-#        html, dest=response)
-#     # if error then show some funny view
-#     if pisa_status.err:
-#        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-#     return response
-    
-def pdf_sku(request,sku_id):
-    sku = Sku.objects.get(id=sku_id)
-    template_path = 'main/pdf_sku.html'
-    context = {'sku': sku}
-    # Create a Django response object, and specify content_type as pdf
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    # find the template and render it.
-    template = get_template(template_path)
-    html = template.render(context)
-    # create a pdf
-    pisa_status = pisa.CreatePDF(
-       html, dest=response)
-    # if error then show some funny view
-    if pisa_status.err:
-       return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
+def pdf_sku(request, sku_id):
+        sku = Sku.objects.get(id=sku_id)
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="MK.pdf"'
+    # +str(datetime.datetime.now())+'.pdf'
+        # response['Content-Transfer-Encoding'] = 'binary'
+        template = render_to_string('main/pdf_sku.html', {'sku': sku})
+        # img = get_image_from_uri('main/pdf_sku.html', {'sku': sku})
+        html = HTML(string=template)
+        result = html.write_pdf()
+
+
+
+        with tempfile.NamedTemporaryFile(delete=True) as output:
+            output.write(result)
+            output.flush
+            output = open(output.name,'rb')
+            response.write(output.read())
+            # contents = contents.decode('utf-8', 'ignore')   
+
+        return response   
+       
+
+
 
 def delete_sku(request, sku_id):
     sku = Sku.objects.get(id=sku_id)
@@ -132,6 +124,33 @@ def add_sku(request):
         if 'submit' in request.GET:
             submit = True
     return render(request, 'main/add_sku.html', {'form': form, 'submit': submit})
+
+
+# from io import StringIO
+# from django.http import HttpResponse
+# from django.template.loader import get_template
+# from xhtml2pdf import pisa
+
+
+# def pdf_sku(request,sku_id):
+#     sku = Sku.objects.get(id=sku_id)
+#     template_path = 'main/pdf_sku.html'
+#     context = {'sku': sku}
+#     # Create a Django response object, and specify content_type as pdf
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = 'attachment; filename="MK.pdf"'
+#     # find the template and render it.
+#     template = get_template(template_path)
+#     html = template.render(context)
+#     # create a pdf
+#     # pisa_status = pisa.CreatePDF(
+#     #    html, dest=response)
+#     result = StringIO()
+#     pisa_status = pisa.CreatePDF(StringIO(html.encode('utf-8')), result)
+#     # if error then show some funny view
+#     if pisa_status.err:
+#        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+#     return response
 
 
 # def pdf_sku(request):

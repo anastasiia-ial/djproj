@@ -1,18 +1,35 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+    @font-face {
+        font-family: "Alice-Regular";
+        src: url("/static/fonts/Alice-Regular.ttf") format("truetype");
+    }
+    @page{
+        size: 'A4';
+        margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+    }
 
-Артикул {{sku.num}} {{sku.name}}
+    @bottom-right{
+        content:" Страница "
+    }
 
+    body {
+        font-family: "Alice-Regular";
+        font-size: 20px
+    }
+</style>
+{% load static %}
 <body>
-    <br>
-    <div class="container">
-        <h1>Маршрутная карта для выпуска подукции <br>{{sku.num}} {{sku.name}} </h1>
+    <pdf:language name="ru">
+        <h2>Маршрутная карта для выпуска подукции <br>{{sku.num}} {{sku.name}} </h2>
         <br>
         <h3>Вес продкции: {{sku.weight}} гр</h3>
         <br>
         <h3>Чертеж: </h3>
         {%if sku.photo%}
-            <img src="{{sku.photo.path}}" height="500 px">
+        <img src="{{sku.photo.url}}" height="200 px">
         {%else%}
-            Нет чертежа продкуции
+        Нет чертежа продкуции
         {%endif%}
 
         <br>
@@ -31,5 +48,4 @@
         </table>
     </div>
 </body>
-
 </html>
