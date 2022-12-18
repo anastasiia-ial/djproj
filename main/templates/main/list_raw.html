@@ -5,6 +5,8 @@
 {%endblock%}
 
 {% block content%}
+{% if raws %}
+<br>
 <div class="container">
     <table class="table table-bordered">
         {% for raw in raws %}
@@ -26,4 +28,12 @@
         {% endfor %}
     </table>
 </div>
+{% else %}
+<br>
+<center>
+<h1> Нет сырья в системе </h1>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a href="{% url 'add_raw' %}" type="button" class="btn btn-primary">Добавить сырье</a>
+</div>
+{% endif %}
 {%endblock%}

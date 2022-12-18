@@ -11,13 +11,13 @@
     {% csrf_token %}
     <div class="row g-3">
       <div class="col-sm-3">
-        <input type="text" class="form-control" placeholder="Артикул" name="num">
+        <input type="text" class="form-control" placeholder="Артикул" name="num" required>
       </div>
       <div class="col-sm">
-        <input type="text" class="form-control" placeholder="Наименование" name="name">
+        <input type="text" class="form-control" placeholder="Наименование" name="name" required>
       </div>
       <div class="col-sm">
-        <input type="text" class="form-control" placeholder="Слой" name="layer">
+        <input type="text" class="form-control" placeholder="Слой" name="layer" required>
       </div>
       <button type="submit" class="btn btn-primary">Добавить</button>
     </div>

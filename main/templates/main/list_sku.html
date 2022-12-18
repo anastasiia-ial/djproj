@@ -5,6 +5,7 @@
 {%endblock%}
 
 {% block content%}
+{% if skus %}
 <br>
 <div class="container">
     <table class="table table-bordered">
@@ -34,4 +35,12 @@
         {% endfor %}
     </table>
 </div>
+{% else %}
+<br>
+<center>
+<h1> Нет маршрутных карт в системе </h1>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a href="{% url 'add_sku' %}" type="button" class="btn btn-primary">Добавить маршрутную карту</a>
+</div>
+{% endif %}
 {%endblock%}

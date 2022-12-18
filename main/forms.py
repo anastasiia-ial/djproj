@@ -14,16 +14,16 @@ class SkuForm(forms.ModelForm):
         model = Sku
         fields = ('num', 'name', 'raw', 'weight', 'photo')
         labels = {
-            'num': '',
-            'name': '',
+            'num': 'Артикул',
+            'name': 'Наименование',
             'raw': 'Сырье ',
-            'weight': '',
-            'photo': '',
+            'weight': 'Вес',
+            'photo': 'Чертеж продукта',
         }
 
         widgets = {
-            'num': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Артикул'}),
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Наименование'}),
+            'num': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите артикул'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите наименование'}),
             'raw': forms.SelectMultiple(attrs={'class': 'form-control'}),
-            'weight': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Вес'}),
+            'weight': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите вес'}),
         }
