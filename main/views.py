@@ -13,18 +13,15 @@ import codecs
 from datetime import datetime
 from django.template import Context, Template
 
+
+# not working img
 def pdf_sku(request, sku_id):
         sku = Sku.objects.get(id=sku_id)
         response = HttpResponse(content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="MK.pdf"'
-    # +str(datetime.datetime.now())+'.pdf'
-        # response['Content-Transfer-Encoding'] = 'binary'
         template = render_to_string('main/pdf_sku.html', {'sku': sku})
-        # img = get_image_from_uri('main/pdf_sku.html', {'sku': sku})
         html = HTML(string=template)
         result = html.write_pdf()
-
-
 
         with tempfile.NamedTemporaryFile(delete=True) as output:
             output.write(result)
@@ -36,6 +33,13 @@ def pdf_sku(request, sku_id):
         return response   
        
 
+def search_sku(request):
+    if request.method == "POST":
+      searched = request.POST['searched']
+      sku = Sku.objects.filter(num__contains = searched)
+      return render(request, 'main/search_sku.html', {'searched':searched, 'sku':sku})
+    else:
+      return render(request, 'main/search_sku.html',{'searched':searched, 'sku':sku})
 
 
 def delete_sku(request, sku_id):
@@ -48,9 +52,6 @@ def delete_raw(request, raw_id):
     raw = Raw.objects.get(id=raw_id)
     raw.delete()
     return redirect('list_raw')
-
-    # return render(request, 'main/update_raw.html',{'raw':raw})
-
 
 def update_sku(request, sku_id):
     sku = Sku.objects.get(id=sku_id)

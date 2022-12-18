@@ -15,7 +15,7 @@ urlpatterns = [
     path('delete_raw/<raw_id>', views.delete_raw, name='delete_raw'),
     path('delete_sku/<sku_id>', views.delete_sku, name='delete_sku'),
     path('pdf_sku/<sku_id>', views.pdf_sku, name='pdf_sku'),
-    # path('pdf_sku', views.pdf_sku, name='pdf_sku'),
     path('pdf_sku/<sku_id>', views.pdf_sku, name='pdf_sku'),
+    path('search_sku', views.search_sku, name='search_sku'),
 
 ]
