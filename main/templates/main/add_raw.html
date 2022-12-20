@@ -6,6 +6,10 @@
 <br>
 {% block content%}
 <br>
+<center>
+<h1> Добавить сырье </h1>
+</center>
+<br>
 <div class="container">
   <form method="POST" action="{% url 'add_raw' %}">
     {% csrf_token %}

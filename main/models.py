@@ -32,8 +32,7 @@ class Sku (models.Model):
 
 class Change (models.Model):
     number = models.CharField(max_length=200)
-    raw_id = models.ForeignKey(
-        Raw, blank=True, null=True, on_delete=models.CASCADE)
+    raw_current = models.ForeignKey(Raw, blank=True, null=True, on_delete=models.CASCADE)
     status = models.BooleanField()  # статус
     created_date = models.DateTimeField(
         default=timezone.now)  # когда была создана заявка

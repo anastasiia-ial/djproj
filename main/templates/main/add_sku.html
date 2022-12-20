@@ -1,26 +1,34 @@
 {% extends 'main/base.html' %}
 
 {% block title%}
-Добавить МК
+    Добавить МК
 {%endblock%}
 <br>
 {% block content%}
-<div class="container">
-      <h1> Создание Маршрутной карты</h1>
-</div>
-<br>
-{% if submit%}
-МК создана
-{%else%}
-<div class="container">
-      <form method="POST" action="{% url 'add_sku' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <br>
-            {{form}}
-            <br>
-            <input type="submit" value=Добавить class="btn btn-primary">
 
-      </form>
-      <div>
-            {%endif%}
-            {%endblock%}
+    <br>
+    {% if submit%}
+        <center>
+            <h1> Маршрутная карта создана </h1>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="{% url 'list_sku' %}" type="button" class="btn btn-primary">Перейти к списоку готовой продукции</a>
+            </div>
+        </center>
+    {%else%}
+
+       
+            
+      
+        <div class="container">
+            <h1> Создание Маршрутной карты</h1>
+            <form method="POST" action="{% url 'add_sku' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <br>
+                {{form}}
+                <br>
+                <input type="submit" value=Добавить class="btn btn-primary">
+
+            </form>
+            <div>
+    {%endif%}
+{%endblock%}

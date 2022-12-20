@@ -7,11 +7,23 @@
 {% block content%}
 {% if raws %}
 <br>
+<center>
+<h1> Cписок артикулов сырья: </h1>
+</center>
+<br>
+<br>
 <div class="container">
     <table class="table table-bordered">
-        {% for raw in raws %}
+    
         <thead>
             <tr>
+                <td>Артикул</td>
+                <td>Наименование</td>
+                <td>Слой</td>
+                <td>Действие</td>
+            </tr>
+            <tr>
+                {% for raw in raws %}
                 <td>{{ raw.num }}</td>
                 <td>{{ raw.name }}</td>
                 <td>{{ raw.layer }}</td>
