@@ -47,12 +47,13 @@ def gen(request,change_id):
     #   searched = request.POST['searched']
     change = Change.objects.get(id=change_id)
     skus = Sku.objects.all()
+    # searched =Change.objects.all()
     #   print(searched)
     #   skus = Sku.objects.filter(num__contains = searched)
     #   sku = Sku.objects.filter(num__contains = searched)
     #   return redirect('gen')
       
-    return render(request, 'main/gen.html', {'skus':skus,'change':change })
+    return render(request, 'main/gen.html', {'skus':skus,'change':change, })
 
 
 def delete_sku(request, sku_id):

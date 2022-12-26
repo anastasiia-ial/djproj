@@ -22,14 +22,14 @@ class Raw (models.Model):
 
 # Код ГП
 class Sku (models.Model):
-    type = models.ForeignKey(ProductsTypes, blank=True, null=True, on_delete=models.CASCADE)
+    
     num = models.CharField(max_length=200)  # артикул готоваой продукции (ГП)
     name = models.CharField(max_length=200)  # наименование ГП
     raw = models.ManyToManyField(Raw, blank=True, null=True)  # сырье
     weight = models.IntegerField(blank=True, null=True)  # вес
     photo = models.ImageField(blank=True, null=True,
                               upload_to="images/")  # фото
-
+    type = models.ForeignKey(ProductsTypes, blank=True, null=True, on_delete=models.CASCADE)
     def __str__(self):
         return self.num + ' ' + self.name
 
