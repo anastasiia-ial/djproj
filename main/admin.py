@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Raw, Sku, Change
+from .models import *
 # from .models import Sku
 # from .models import Change
 
-@admin.register(Raw, Sku, Change)
+@admin.register(Raw,Change,Sku,ProductsTypes)
 class PersonAdmin(admin.ModelAdmin):
     pass
 

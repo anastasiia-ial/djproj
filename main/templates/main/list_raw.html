@@ -16,7 +16,7 @@
     <table class="table table-bordered">
     
         <thead>
-            <tr>
+            <tr style="font-weight:bold">
                 <td>Артикул</td>
                 <td>Наименование</td>
                 <td>Слой</td>
@@ -36,8 +36,8 @@
                     </div>
                 </td>
             </tr>
+            {% endfor %}
         </thead>
-        {% endfor %}
     </table>
 </div>
 {% else %}

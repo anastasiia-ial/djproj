@@ -5,11 +5,38 @@
 {%endblock%}
 <br>
 {% block content%}
+{% if messages %}
+{% for message in messages %}
+<div  class="alert alert-{{ message.tags }}  m-2" role="alert"> 
+  {{message}}
+ 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+  {% endfor %}
+</div>
+
+{% endif %}
+{% comment %} <ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endcomment %}
+{% comment %} {% if messages %}
+<div class="alert alert-{{message.tags}}  m-2" id ='msg' role="alert"> 
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %} {% endcomment %}
 <br>
 <center>
 <h1> Добавить сырье </h1>
 </center>
-<br>
+
+{% comment %} {% if submit%}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Артикул сырья добавлен!</strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> {% endcomment %}
+  <br>
 <div class="container">
   <form method="POST" action="{% url 'add_raw' %}">
     {% csrf_token %}
@@ -26,4 +53,11 @@
       <button type="submit" class="btn btn-primary">Добавить</button>
     </div>
   </form>
+  {% comment %} <script>
+    setTimeout(function()){
+      if($('msg').length > 0){
+        $('msg').remove();
+      } 
+    },2000
+  </script> {% endcomment %}
   {%endblock%}

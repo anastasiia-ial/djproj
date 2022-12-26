@@ -1,34 +1,29 @@
 {% extends 'main/base.html' %}
 
 {% block title%}
-Добавить новый артикул
+    Добавить новый артикул
 {%endblock%}
 <div class="container">
     {% block content%}
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Текущий артикул</label>
-        <input type="text" class="form-control_addpage" id="exampleFormControlInput1" placeholder="Введите артикул SAP">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Новый артикул</label>
-        <input type="text" class="form-control_addpage" id="exampleFormControlInput1" placeholder="Введите артикул SAP">
-    </div>
-
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Тип материала</label>
-        <input type="text" class="form-control_addpage" id="exampleFormControlInput1" placeholder="Защитная пленка">
-    </div>
-    <form>
-        <div class="form-group">
-            <label for="inputDate">Дата письма</label>
-            <br>
-            <input type="date" class="form-control-date-addpage" width="20%">
-        </div>
-    </form>
-
-    <div class="col-12">
-        <button class="btn btn-primary" id="add" type="submit"> Добавить </button>
-    </div>
-    </body>
+        <br>
+        {% if submit%}
+            <center>
+                <h1> Изменение добавлено </h1>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{% url 'status' %}" type="button" class="btn btn-primary">Перейти к списоку изменений</a>
+                </div>
+            </center>
+        {%else%}
+            <div class="container">
+                <h1> Заявка на изменение сырья</h1>
+                <form method="POST" action="{% url 'add' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <br>
+                    {{form}}
+                    <br>
+                    <input type="submit" value=Добавить class="btn btn-primary">
+                </form>
+                <div>
+        {%endif%}
     {%endblock%}
 </div>

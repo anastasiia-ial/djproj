@@ -21,7 +21,9 @@
 {% load static %}
 <body>
     <pdf:language name="ru">
-        <h2>Маршрутная карта для выпуска подукции <br>{{sku.num}} {{sku.name}} </h2>
+        <h2>Маршрутная карта 
+            <br> {{ sku.type.name}}
+            <br>{{sku.num}} {{sku.name}} </h2>
         <br>
         <h3>Вес продкции: {{sku.weight}} гр</h3>
         <br>
@@ -36,15 +38,20 @@
         <h3>Сырье:</h3>
         <table class="table table-bordered">
             <thead>
+                <tr style="font-weight:bold">
+                    <td>Артикул</td>
+                    <td>Наименование</td>
+                    <td>Слой</td>
+                   
+                </tr>
                 {% for raw in sku.raw.all %}
                     <tr>
                         <td>{{ raw.num }}</td>
                         <td>{{ raw.name }}</td>
                         <td>{{ raw.layer }}</td>
-                    </td>
-                    </tr>
                 {% endfor %}
-            </thead>
+            </tr>
+        </thead>
         </table>
     </div>
 </body>

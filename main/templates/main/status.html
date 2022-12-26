@@ -1,26 +1,31 @@
 {% extends 'main/base.html' %}
 
 {%block title%}
-Главная станица
+    Главная станица
 {%endblock%}
 {% block content%}
-
-<div class="container">
-    <br>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="container">
+        <br>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for change in changes %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                          <h5>{{ change.raw_current.num }} заменить {{ change.raw_new.num }}</h5>
+                          </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ change.raw_current.num }} {{ change.raw_current.name }} заменить на {{ change.raw_new.num }} {{change.raw_new.name }}
+                                <h6 class="card-subtitle mb-2 text-muted">Слой: {{change.raw_current.layer}}</h6>
+                            <form class="d-flex" method="POST" action=" {% url 'gen' change.id %} ">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-success" type="submit">Поиск</button>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{change.created_date}}</small>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
-            </div>
+            {% endfor %}
         </div>
-    </div>
-    {% endblock %}
-    
+{% endblock %}

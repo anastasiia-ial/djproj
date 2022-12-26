@@ -1,37 +1,43 @@
 {% extends 'main/base.html' %}
 
 {% block title%}
-Артикул {{sku.num}} {{sku.name}}
+    Артикул {{sku.num}} {{sku.name}}
 {%endblock%}
 
 {% block content%}
 
-<body>
-    <br>
-    <div class="container">
-        <h1>Маршрутная карта для выпуска подукции <br>{{sku.num}} {{sku.name}} </h1>
+    <body>
         <br>
-        <h3>Вес продкции: {{sku.weight}} гр</h3>
-        <br>
-        <h3>Чертеж: </h3>
-        {%if sku.photo%}
-        <img src="{{sku.photo.url}}" height="200 px">
-        {%else%}
-        Нет чертежа продкуции
-        {%endif%}
+        <div class="container">
+            <h1>Маршрутная карта
+                <br> {{ sku.type.name}}
+                <br>{{sku.num}} {{sku.name}} </h1>
+            <br>
+            <h3>Вес продкции: {{sku.weight}} гр</h3>
+            <br>
+            <h3>Чертеж: </h3>
+            {%if sku.photo%}
+                <img src="{{sku.photo.url}}" height="200 px">
+            {%else%}
+                Нет чертежа продкуции
+            {%endif%}
 
-        <br>
-        <h3>Сырье:</h3>
-        <table class="table table-bordered">
-            <thead>
-                {% for raw in sku.raw.all %}
-                <tr>
-                    <td>{{ raw.num }}</td>
-                    <td>{{ raw.name }}</td>
-                    <td>{{ raw.layer }}</td>
-                    </td>
+            <br>
+            <h3>Сырье:</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="font-weight:bold">
+                        <td>Артикул</td>
+                        <td>Наименование</td>
+                        <td>Слой</td>
+                    </tr>
+                    {% for raw in sku.raw.all %}
+                        <tr>
+                            <td>{{ raw.num }}</td>
+                            <td>{{ raw.name }}</td>
+                            <td>{{ raw.layer }}</td>
+                    {% endfor %}
                 </tr>
-                {% endfor %}
             </thead>
         </table>
 
@@ -45,7 +51,8 @@
             <a href="{% url 'pdf_sku' sku.id %}" type="button" class="btn btn-primary">Напечатать МК</a>
         </div>
     </div>
-</body>
+    <br>  <br>  <br>
+    </body>
 
-</html>
+    </html>
 {%endblock%}

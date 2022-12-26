@@ -5,6 +5,7 @@ from .models import *
 from .forms import *
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect
+from django.contrib import messages
 
 from weasyprint import HTML
 from django.template.loader import render_to_string
@@ -41,6 +42,18 @@ def search_sku(request):
     else:
       return render(request, 'main/search_sku.html',{'searched':searched, 'sku':sku})
 
+def gen(request,change_id):
+    # if request.method == "POST":
+    #   searched = request.POST['searched']
+    change = Change.objects.get(id=change_id)
+    skus = Sku.objects.all()
+    #   print(searched)
+    #   skus = Sku.objects.filter(num__contains = searched)
+    #   sku = Sku.objects.filter(num__contains = searched)
+    #   return redirect('gen')
+      
+    return render(request, 'main/gen.html', {'skus':skus,'change':change })
+
 
 def delete_sku(request, sku_id):
     sku = Sku.objects.get(id=sku_id)
@@ -73,25 +86,10 @@ def update_raw(request, raw_id):
     return render(request, 'main/update_raw.html', {'raw': raw, 'form': form})
 
 
-def add_raw(request):
-    if request.method == 'POST':
-        form = RawForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            return render(request, 'main/add_raw.html')
-
-    else:
-        print('hi')
-        return render(request, 'main/add_raw.html')
-
-
 def status(request):
-    # changes=Change.objects.all()
-    return render(request, 'main/status.html')
-
-
-def gen(request):
-    return render(request, 'main/gen.html')
+    changes = Change.objects.all()
+    raws = Raw.objects.all()
+    return render(request, 'main/status.html',{'changes': changes,'raws': raws})
 
 
 def add(request):
@@ -112,6 +110,20 @@ def show_sku(request, sku_id):
     sku = Sku.objects.get(id=sku_id)
     return render(request, 'main/show_sku.html', {'sku': sku})
 
+def add_raw(request):
+    # submit = False
+    if request.method == 'POST':
+        form = RawForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, ' Артикул добавлен ')
+            return HttpResponseRedirect('/add_raw')
+            # return HttpResponseRedirect('/add_raw?submit=True')
+    else:
+        if 'submit' in request.GET:
+            submit = True
+        print('hi')
+        return render(request, 'main/add_raw.html')
 
 def add_sku(request):
     submit = False
@@ -119,12 +131,28 @@ def add_sku(request):
         form = SkuForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            # messages.success (request, 'got it ')
             return HttpResponseRedirect('/add_sku?submit=True')
+            # return HttpResponseRedirect('/add_sku')
     else:
         form = SkuForm
         if 'submit' in request.GET:
             submit = True
     return render(request, 'main/add_sku.html', {'form': form, 'submit': submit})
+
+
+def add(request):
+    submit = False
+    if request.method == 'POST':
+        form = ChangeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add?submit=True')
+    else:
+        form = ChangeForm
+        if 'submit' in request.GET:
+            submit = True
+    return render(request, 'main/add.html', {'form': form, 'submit': submit})
 
 
 # from io import StringIO

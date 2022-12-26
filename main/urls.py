@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.status, name='status'),
     path('add', views.add, name='add'),
-    path('gen', views.gen, name='gen'),
+    path('gen/<change_id>', views.gen, name='gen'),
     path('list_raw', views.list_raw, name='list_raw'),
     path('add_raw', views.add_raw, name='add_raw'),
     path('list_sku', views.list_sku, name='list_sku'),
@@ -17,5 +17,7 @@ urlpatterns = [
     path('pdf_sku/<sku_id>', views.pdf_sku, name='pdf_sku'),
     path('pdf_sku/<sku_id>', views.pdf_sku, name='pdf_sku'),
     path('search_sku', views.search_sku, name='search_sku'),
+    path('add', views.add, name='add'),
+    path('status', views.status, name='status'),
 
 ]

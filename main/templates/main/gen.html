@@ -1,17 +1,17 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-    Поиск артикула готовой продуции
+    Поиск ГП с {{change.raw_current}}
 {%endblock%}
 
 {% block content %}
     <br>
-    {%if searched %}
         <div class="container">
-            <h2 style="text-align: center;"> Поиск артикула готовой продуции {{searched}}<br></h2>
-
+            <h2 style="text-align: center;"> Поиск ГП с {{change.raw_current}}<br></h2>
             <table class="table table-bordered">
-                {% for sku in skus %}
+
+                {% for sku in sku %}
+                
                     <thead>
                         <tr>
                             <td>{{sku.num}} </td>
@@ -27,10 +27,5 @@
                         </tr>
                     </div>
                 {% endfor %}
-    {% else %}
-        <div class="container">
-            <h1 style="text-align: center;"> Oppps<br></h2>
-        </div>
-
-    {% endif %}
+  
 {% endblock %}
