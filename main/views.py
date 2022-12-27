@@ -15,7 +15,7 @@ from datetime import datetime
 from django.template import Context, Template
 
 
-# not working img
+# not working img 
 def pdf_sku(request, sku_id):
         sku = Sku.objects.get(id=sku_id)
         response = HttpResponse(content_type='application/pdf')
@@ -43,19 +43,11 @@ def search_sku(request):
       return render(request, 'main/search_sku.html',{'searched':searched, 'sku':sku})
 
 def gen(request,change_id):
-    # if request.method == "POST":
-    #   searched = request.POST['searched']
     change = Change.objects.get(id=change_id)
-    skus = Sku.objects.all()
-    # searched =Change.objects.all()
-    #   print(searched)
-    #   skus = Sku.objects.filter(num__contains = searched)
-    #   sku = Sku.objects.filter(num__contains = searched)
-    #   return redirect('gen')
-      
-    return render(request, 'main/gen.html', {'skus':skus,'change':change, })
+    sku = Sku.objects.filter(raw = change.raw_current)
+    return render(request, 'main/gen.html', {'change':change,'sku':sku,})
 
-
+   
 def delete_sku(request, sku_id):
     sku = Sku.objects.get(id=sku_id)
     sku.delete()

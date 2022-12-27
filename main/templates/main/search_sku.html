@@ -7,6 +7,7 @@
 {% block content %}
     <br>
     {%if searched %}
+
         <div class="container">
             <h2 style="text-align: center;"> Поиск артикула готовой продуции {{searched}}<br></h2>
 
@@ -18,7 +19,7 @@
                             <td>{{sku.name}}</td>
                             <td align="center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary">Просмотреть МК</a> 
+                                    <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary">Просмотреть МК</a>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="#" type="button" class="btn btn-primary">Просмотреть изменения, которые нужно внести</a>
@@ -26,10 +27,13 @@
                             </td>
                         </tr>
                     </div>
+                    
                 {% endfor %}
+
     {% else %}
+
         <div class="container">
-            <h1 style="text-align: center;"> Oppps<br></h2>
+            <h1 style="text-align: center;"> Артикул не найден<br></h2>
         </div>
 
     {% endif %}

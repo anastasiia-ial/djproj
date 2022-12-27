@@ -41,10 +41,11 @@ class Change (models.Model):
     # status = models.BooleanField()  # статус
     created_date = models.DateTimeField(default=timezone.now)  # когда была создана заявка
 
-def __str__(self):
-      return self.raw_current + 'на' + self.raw_new
+    def __str__(self):
+      return self.raw_current.num
 
-def publish(self):
+
+    def publish(self):
         self.created_date = timezone.now()
         self.save()
 
