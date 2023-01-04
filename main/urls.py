@@ -19,5 +19,6 @@ urlpatterns = [
     path('search_sku', views.search_sku, name='search_sku'),
     path('add', views.add, name='add'),
     path('status', views.status, name='status'),
+    path('change/<sku_id>', views.change, name='change'),
 
 ]

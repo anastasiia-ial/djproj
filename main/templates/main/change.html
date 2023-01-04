@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title%}
+    Список артикулов ГП
+{%endblock%}
+
+{% block content%}
+
+    {% if list_change %}
+        <br>
+        <center>
+            <h1> Cписок сырья для внесения изменений {{ sku.num}} {{ sku.name}}: </h1>
+        </center>
+        <br>
+        <div class="container">
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr style="font-weight:bold">
+                        <td>Артикул замен</td>
+                        <td>Действие</td>
+                    </tr>
+                    <tr>
+                        {% for list_change in list_change %}
+                        {% comment %} {% for change in change %} {% endcomment %}
+                            <td> Замена с {{ list_change.raw_current.num}} {{ list_change.raw_current.name}} на {{ list_change.raw_new.num}}  {{ list_change.raw_new.name}}</td>
+                            <td align="right">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-primary">Изменить</a>
+                                </div>
+                            </td>
+                            {% comment %} {% endfor %} {% endcomment %}
+                       
+                    </tr>
+                    {% endfor %}
+                    </thead>
+            
+                </table>
+            </div>
+    {% else %}
+        <br>
+        <center>
+            <h1> Нет сырья для изменения </h1>
+            <div class="btn-group" role="group" aria-label="Basic example">
+            </div>
+    {% endif %}
+{%endblock%}

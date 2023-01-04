@@ -42,10 +42,23 @@ def search_sku(request):
     else:
       return render(request, 'main/search_sku.html',{'searched':searched, 'sku':sku})
 
+# SELECT sku_id from main_sku_raw where raw_id=32
 def gen(request,change_id):
     change = Change.objects.get(id=change_id)
     sku = Sku.objects.filter(raw = change.raw_current)
     return render(request, 'main/gen.html', {'change':change,'sku':sku,})
+
+def change(request,sku_id):
+    sku = Sku.objects.get(id=sku_id)
+    # raw = Sku.objects.get(raw = '33' , id = sku.id)
+    # all = Raw.objects.all()
+    # raw = Sku.objects.filter(raw = all.num)
+    list_change = Change.objects.all()
+    # list_change  = Change.objects.filter(raw_current = sku.raw)
+    # change = Change.objects.filter(raw_current = sku.raw)
+    # change=Change.objects.all()
+    # change_1 = Change.raw_current.get_object(change)
+    return render(request, 'main/change.html', {'sku':sku,'list_change':list_change,'change':change,})
 
    
 def delete_sku(request, sku_id):

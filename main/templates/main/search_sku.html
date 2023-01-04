@@ -12,9 +12,15 @@
             <h2 style="text-align: center;"> Поиск артикула готовой продуции {{searched}}<br></h2>
 
             <table class="table table-bordered">
-                {% for sku in sku %}
+             
                     <thead>
-                        <tr>
+                        <tr style="font-weight:bold">
+                            <td>Артикул</td>
+                            <td>Наименование</td>
+                            <td>Действие</td>
+                        </tr>
+                        <tr>  
+                             {% for sku in sku %}
                             <td>{{sku.num}} </td>
                             <td>{{sku.name}}</td>
                             <td align="center">
@@ -22,12 +28,12 @@
                                     <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary">Просмотреть МК</a>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="#" type="button" class="btn btn-primary">Просмотреть изменения, которые нужно внести</a>
+                                    <a href="{% url 'change' sku.id %}" type="button" class="btn btn-primary">Просмотреть изменения, которые нужно внести</a>
                                 </div>
                             </td>
                         </tr>
                     </div>
-                    
+
                 {% endfor %}
 
     {% else %}
