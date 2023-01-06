@@ -50,21 +50,8 @@ def gen(request,change_id):
 
 def change(request,sku_id):
     sku = Sku.objects.get(id=sku_id)
-    # raw = Sku.objects.get(raw = '33' , id = sku.id)
-    # all = Raw.objects.all()
-    # raw = Sku.objects.filter(raw = all.num)
-    # raw = Sku.objects.values('raw')
-    # list_change = Change.objects.all()
-    list_change = Change.objects.filter(raw_current = sku.raw)
-    # list_change = Change.objects.all()
-    # list_change = Change.objects.filter(raw_current = raw)
-    # raw = Raw.objects.filter(num = sku.raw)
-    # list_change = Change.objects.filter(raw_current = raw)
-    # list_change  = Change.objects.filter(raw_current = sku.raw)
-    # change = Change.objects.filter(raw_current = sku.raw)
-    # change=Change.objects.all()
-    # change_1 = Change.raw_current.get_object(change)
-    return render(request, 'main/change.html', {'sku':sku,'list_change':list_change,'change':change,'raw':raw})
+    list_change = Change.objects.filter(raw_current__in = sku.raw.all())
+    return render(request, 'main/change.html', {'sku':sku,'list_change':list_change,'change':change,})
 
    
 def delete_sku(request, sku_id):
