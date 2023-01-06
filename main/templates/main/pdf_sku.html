@@ -17,6 +17,9 @@
         font-family: "Alice-Regular";
         font-size: 20px
     }
+    img {
+        height: 200px;
+    }
 </style>
 {% load static %}
 <body>
@@ -29,7 +32,7 @@
         <br>
         <h3>Чертеж: </h3>
         {%if sku.photo%}
-        <img src="{{sku.photo.url}}" height="200 px">
+        <img src="{{sku.photo.url}}" alt=" "  >
         {%else%}
         Нет чертежа продкуции
         {%endif%}

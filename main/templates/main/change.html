@@ -14,7 +14,9 @@
         <br>
         <div class="container">
             <table class="table table-bordered">
-
+                {{list_change}}
+                {{raw}}
+                {{sku}}
                 <thead>
                     <tr style="font-weight:bold">
                         <td>Артикул замен</td>
@@ -22,14 +24,14 @@
                     </tr>
                     <tr>
                         {% for list_change in list_change %}
-                        {% comment %} {% for change in change %} {% endcomment %}
+                   
                             <td> Замена с {{ list_change.raw_current.num}} {{ list_change.raw_current.name}} на {{ list_change.raw_new.num}}  {{ list_change.raw_new.name}}</td>
                             <td align="right">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-primary">Изменить</a>
                                 </div>
                             </td>
-                            {% comment %} {% endfor %} {% endcomment %}
+                         
                        
                     </tr>
                     {% endfor %}

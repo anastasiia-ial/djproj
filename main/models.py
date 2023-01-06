@@ -22,7 +22,6 @@ class Raw (models.Model):
 
 # Код ГП
 class Sku (models.Model):
-    
     num = models.CharField(max_length=200)  # артикул готоваой продукции (ГП)
     name = models.CharField(max_length=200)  # наименование ГП
     raw = models.ManyToManyField(Raw, blank=True, null=True)  # сырье

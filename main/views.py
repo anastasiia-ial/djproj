@@ -15,13 +15,13 @@ from datetime import datetime
 from django.template import Context, Template
 
 
-# not working img 
+# pdf
 def pdf_sku(request, sku_id):
         sku = Sku.objects.get(id=sku_id)
         response = HttpResponse(content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="MK.pdf"'
-        template = render_to_string('main/pdf_sku.html', {'sku': sku})
-        html = HTML(string=template)
+        template = render_to_string('main/pdf_sku.html', {'sku': sku},)
+        html = HTML(string=template,base_url=request.build_absolute_uri())
         result = html.write_pdf()
 
         with tempfile.NamedTemporaryFile(delete=True) as output:
@@ -29,7 +29,7 @@ def pdf_sku(request, sku_id):
             output.flush
             output = open(output.name,'rb')
             response.write(output.read())
-            # contents = contents.decode('utf-8', 'ignore')   
+      
 
         return response   
        
@@ -53,12 +53,18 @@ def change(request,sku_id):
     # raw = Sku.objects.get(raw = '33' , id = sku.id)
     # all = Raw.objects.all()
     # raw = Sku.objects.filter(raw = all.num)
-    list_change = Change.objects.all()
+    # raw = Sku.objects.values('raw')
+    # list_change = Change.objects.all()
+    list_change = Change.objects.filter(raw_current = sku.raw)
+    # list_change = Change.objects.all()
+    # list_change = Change.objects.filter(raw_current = raw)
+    # raw = Raw.objects.filter(num = sku.raw)
+    # list_change = Change.objects.filter(raw_current = raw)
     # list_change  = Change.objects.filter(raw_current = sku.raw)
     # change = Change.objects.filter(raw_current = sku.raw)
     # change=Change.objects.all()
     # change_1 = Change.raw_current.get_object(change)
-    return render(request, 'main/change.html', {'sku':sku,'list_change':list_change,'change':change,})
+    return render(request, 'main/change.html', {'sku':sku,'list_change':list_change,'change':change,'raw':raw})
 
    
 def delete_sku(request, sku_id):
