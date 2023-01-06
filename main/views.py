@@ -67,7 +67,7 @@ def delete_raw(request, raw_id):
 
 def update_sku(request, sku_id):
     sku = Sku.objects.get(id=sku_id)
-    form = SkuForm(request.POST or None, instance=sku)
+    form = SkuForm(request.POST or None,request.FILES or None, instance=sku)
     if form.is_valid():
         form.save()
         return redirect('list_sku')
@@ -110,14 +110,12 @@ def show_sku(request, sku_id):
     return render(request, 'main/show_sku.html', {'sku': sku})
 
 def add_raw(request):
-    # submit = False
     if request.method == 'POST':
         form = RawForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, ' Артикул добавлен ')
             return HttpResponseRedirect('/add_raw')
-            # return HttpResponseRedirect('/add_raw?submit=True')
     else:
         if 'submit' in request.GET:
             submit = True
@@ -130,9 +128,7 @@ def add_sku(request):
         form = SkuForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            # messages.success (request, 'got it ')
             return HttpResponseRedirect('/add_sku?submit=True')
-            # return HttpResponseRedirect('/add_sku')
     else:
         form = SkuForm
         if 'submit' in request.GET:
@@ -153,109 +149,3 @@ def add(request):
             submit = True
     return render(request, 'main/add.html', {'form': form, 'submit': submit})
 
-
-# from io import StringIO
-# from django.http import HttpResponse
-# from django.template.loader import get_template
-# from xhtml2pdf import pisa
-
-
-# def pdf_sku(request,sku_id):
-#     sku = Sku.objects.get(id=sku_id)
-#     template_path = 'main/pdf_sku.html'
-#     context = {'sku': sku}
-#     # Create a Django response object, and specify content_type as pdf
-#     response = HttpResponse(content_type='application/pdf')
-#     response['Content-Disposition'] = 'attachment; filename="MK.pdf"'
-#     # find the template and render it.
-#     template = get_template(template_path)
-#     html = template.render(context)
-#     # create a pdf
-#     # pisa_status = pisa.CreatePDF(
-#     #    html, dest=response)
-#     result = StringIO()
-#     pisa_status = pisa.CreatePDF(StringIO(html.encode('utf-8')), result)
-#     # if error then show some funny view
-#     if pisa_status.err:
-#        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-#     return response
-
-
-# def pdf_sku(request):
-#     buf = io.BytesIO()
-#     c = canvas.Canvas(buf, pagesize=A4, bottomup=0)
-
-#     # textobj = c.beginText()
-#     textobj = c.drawString(280,700,'sku.num')
-#     textobj = c.drawString(280,400,'sku.num')
-#     # textobj = c.drawString(280,700,)
-#     # textobj = c.drawString(280,700,)
-#     # textobj = c.drawString(280,700,)
-#     # textobj.setTextOrigin(cm, cm)
-#     # textobj.setFont('Helvetica', 14)
-#     # img = c.drawImage(298,432)
-
-#     skus = Sku.objects.all()
-#     # lines = []
-#     # lines=[
-#     #     "line",
-#     #     "ht",
-#     #     "dfdfgd"
-#     # ]
-#     # for sku in skus:
-#         # lines.append(sku.num)
-#         # lines.append(sku.name)
-#         # lines.append(sku.raw)
-#         # lines.append(sku.weight)
-#         # lines.append(sku.photo)
-
-#     # for line in lines:
-#         # textobj.textLine(line)
-#         # img.drawInlineimage(img)
-#     # c.drawString(textobj)
-#     # c.drawInlineImage(img)
-#     c.showPage()
-#     c.save()
-#     buf.seek(0)
-#     return FileResponse(buf, as_attachment=True, filename='MK.pdf')
-    # buf = io.BytesIO()
-    # c = canvas.Canvas(buf, pagesize=A4, bottomup=0)
-    # c.setTitle(sku.num+' '+sku.name)
-    # # textobj = c.beginText()
-    # # textobj.setTextOrigin(cm, cm)
-    # # textobj.setFont('Helvetica', 14)
-
-    # skus = Sku.objects.all()
-    # lines = []
-    # # lines=[
-    # #     "line",
-    # #     "ht",
-    # #     "dfdfgd"
-    # # ]
-    # for sku in skus:
-    #     lines.append(sku.num)
-    #     lines.append(sku.name)
-    # #     lines.append (sku.raw)
-    #     # lines.append (sku.weight)
-    #     # lines.append (sku.photo)
-
-    # for line in lines:
-    #     textobj.textLine(line)
-
-    # c.drawText(textobj)
-    # c.showPage()
-    # c.save()
-    # buf.seek(0)
-    # return FileResponse(buf, as_attachment=True, filename='MK.pdf')
-
-
-# def add_sku(request):
-#     form = SkuForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#     # if request.method == 'POST':
-#     #     form = SkuForm (request.POST)
-#     #     context = {'form' : form}
-#     #     if form.is_valid():
-#     #         form.save()
-#     return render(request,'main/add_sku.html',{'form':form})
