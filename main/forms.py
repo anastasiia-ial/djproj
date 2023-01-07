@@ -26,7 +26,7 @@ class SkuForm(forms.ModelForm):
             'type': forms.Select(attrs={'class': 'form-control'}),
             'num': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите артикул'}),
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите наименование'}),
-            'raw': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'raw': forms.SelectMultiple(attrs={'class': 'form-control', }),
             'weight': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите вес'}),
         }
 
