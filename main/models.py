@@ -24,7 +24,7 @@ class Raw (models.Model):
 class Sku (models.Model):
     num = models.CharField(max_length=200)  # артикул готоваой продукции (ГП)
     name = models.CharField(max_length=200)  # наименование ГП
-    raw = models.ManyToManyField(Raw, blank=True, null=True)  # сырье
+    raw = models.ManyToManyField(Raw, blank=True)  # сырье
     weight = models.IntegerField(blank=True, null=True)  # вес
     photo = models.ImageField(blank=True, null=True,
                               upload_to="images/")  # фото
