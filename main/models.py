@@ -34,10 +34,8 @@ class Sku (models.Model):
 
 # Изменения в сырье
 class Change (models.Model):
-    # number = models.CharField(max_length=200)
     raw_current = models.ForeignKey(Raw, blank=True, null=True, on_delete=models.CASCADE, related_name='raw_current')
     raw_new = models.ForeignKey(Raw, blank=True, null=True, on_delete=models.CASCADE, related_name='raw_new')
-    # status = models.BooleanField()  # статус
     created_date = models.DateTimeField(default=timezone.now)  # когда была создана заявка
 
     def __str__(self):
@@ -49,20 +47,4 @@ class Change (models.Model):
         self.save()
 
 
-# Маршрутная карта
 
-# class Mk (models.Model):
-#     name = models.CharField(max_length=200)#номер маршрутной карты
-#     raw_id = models.ForeignKey(Raw, blank=True, null=True) # Mk.raw_id.num
-#     # raw_id = models.CharField(max_length=200)
-#     def __str__(self):
-#        return self.name +' '+ self.raw_id
-
-# Соединение кода ГП и МК
-
-# class Sku_Mk(models.Model):
-#     sku_id = models.ForeignKey(Sku, blank=True, null= True)
-#     mk_id = models.ForeignKey(Mk, blank=True, null=True)
-
-#     def __str__(self):
-#        return self.sku_id +' '+ self.mk_id
