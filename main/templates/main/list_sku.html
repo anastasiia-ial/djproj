@@ -32,17 +32,17 @@
                             <td>{{ sku.name }}</td>
                             <td align="left">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary">Просмотреть</a>
+                                    <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-outline-primary">Просмотреть</a>
                                 </div>
                             </td>
                             <td align="left">
                                 <div class="btn-group" role="group" aria-label="Basic example" >
-                                    <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-primary">Изменить</a>
+                                    <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-outline-secondary">Изменить</a>
                                 </div>
                             </td>
                             <td align="left">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{% url 'delete_sku' sku.id %}" type="button" class="btn btn-primary">Удалить</a>
+                                    <a href="{% url 'delete_sku' sku.id %}" type="button" class="btn btn-outline-danger">Удалить</a>
                                 </div>
                             </td>
                             </tr>
@@ -58,7 +58,7 @@
         <center>
             <h1> Нет маршрутных карт в системе </h1>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="{% url 'add_sku' %}" type="button" class="btn btn-primary">Добавить маршрутную карту</a>
+                <a href="{% url 'add_sku' %}" type="button" class="btn btn-outline-primary">Добавить маршрутную карту</a>
             </div>
     {% endif %}
 {%endblock%}

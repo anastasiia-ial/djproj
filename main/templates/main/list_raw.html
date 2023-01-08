@@ -30,10 +30,10 @@
                 <td>{{ raw.layer }}</td>
                 <td align="right">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="{% url 'update_raw' raw.id %}" type="button" class="btn btn-primary">Изменить</a>
+                        <a href="{% url 'update_raw' raw.id %}" type="button" class="btn btn-outline-secondary">Изменить</a>
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="{% url 'delete_raw' raw.id %}" type="button" class="btn btn-primary">Удалить</a>
+                        <a href="{% url 'delete_raw' raw.id %}" type="button" class="btn btn-outline-danger">Удалить</a>
                     </div>
                 </td>
             </tr>
@@ -46,7 +46,7 @@
 <center>
 <h1> Нет сырья в системе </h1>
 <div class="btn-group" role="group" aria-label="Basic example">
-    <a href="{% url 'add_raw' %}" type="button" class="btn btn-primary">Добавить сырье</a>
+    <a href="{% url 'add_raw' %}" type="button" class="btn btn-outline-primary">Добавить сырье</a>
 </div>
 {% endif %}
 {%endblock%}

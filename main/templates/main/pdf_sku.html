@@ -13,9 +13,21 @@
         width: 100%;
       }
       
-      th, td {
-        border: 1px solid black;
+    thead {
+       border-bottom: .2mm solid #a9a;
+        color: #a9a;
+        font-size: 10pt;
+        font-weight: 400;
+        padding-bottom: .25cm;
+        text-transform: uppercase;
       }
+      tr {
+        color: #000;
+        font-size: 10pt;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+      
 
     body {
         font-family: "Alice-Regular";
@@ -53,6 +65,7 @@
                     <td>Слой</td>
                    
                 </tr>
+            </thead>
                 {% for raw in sku.raw.all %}
                     <tr>
                         <td>{{ raw.num }}</td>
@@ -60,7 +73,7 @@
                         <td>{{ raw.layer }}</td>
                 {% endfor %}
             </tr>
-        </thead>
+        
         </table>
     </div>
 </body>

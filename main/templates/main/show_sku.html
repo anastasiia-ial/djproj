@@ -42,13 +42,13 @@
         </table>
 
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-primary">Изменить</a>
+            <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-outline-secondary">Изменить</a>
         </div>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="{% url 'delete_sku' sku.id %}" type="button" class="btn btn-primary">Удалить</a>
+            <a href="{% url 'delete_sku' sku.id %}" type="button" class="btn btn-outline-danger">Удалить</a>
         </div>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="{% url 'pdf_sku' sku.id %}" type="button" class="btn btn-primary">Напечатать МК</a>
+            <a href="{% url 'pdf_sku' sku.id %}" type="button" class="btn btn-outline-info">Напечатать МК</a>
         </div>
     </div>
     <br>  <br>  <br>
