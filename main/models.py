@@ -18,7 +18,7 @@ class Raw (models.Model):
     layer = models.CharField(max_length=200)  # навзвание слоя на русском
 
     def __str__(self):
-        return self.num +' ' + self.name
+        return self.layer +' ' + self.num +' ' + self.name
 
 # Код ГП
 class Sku (models.Model):
