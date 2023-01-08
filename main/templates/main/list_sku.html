@@ -5,6 +5,7 @@
 {%endblock%}
 
 {% block content%}
+
     {% if skus %}
         <br>
         <center>
@@ -12,40 +13,43 @@
         </center>
         <br>
         <div class="container">
-            <table class="table table-bordered">
-
+    
+   
+                <table id="example" class="table table-bordered" style="width:100%">
                 <thead>
                     <tr style="font-weight:bold">
-                        <td>Артикул</td>
+                        <td >Артикул</td>
                         <td>Наименование</td>
                         <td>Действие</td>
                         <td>Действие</td>
                         <td>Действие</td>
                     </tr>
+                </thead>
                     <tr>
                         {% for sku in skus %}
 
                             <td>{{ sku.num }}</td>
                             <td>{{ sku.name }}</td>
-                            <td align="right">
+                            <td align="left">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="{% url 'show_sku' sku.id %}" type="button" class="btn btn-primary">Просмотреть</a>
                                 </div>
                             </td>
-                            <td align="right">
-                                <div class="btn-group" role="group" aria-label="Basic example">
+                            <td align="left">
+                                <div class="btn-group" role="group" aria-label="Basic example" >
                                     <a href="{% url 'update_sku' sku.id %}" type="button" class="btn btn-primary">Изменить</a>
                                 </div>
                             </td>
-                            <td align="right">
+                            <td align="left">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="{% url 'delete_sku' sku.id %}" type="button" class="btn btn-primary">Удалить</a>
                                 </div>
                             </td>
                             </tr>
+                            
                         {% endfor %}
 
-                    </thead>
+                
 
                 </table>
             </div>

@@ -13,7 +13,7 @@
 <br>
 <br>
 <div class="container">
-    <table class="table table-bordered">
+    <table id="example" class="table table-bordered" style="width:100%">
     
         <thead>
             <tr style="font-weight:bold">
@@ -22,6 +22,7 @@
                 <td>Слой</td>
                 <td>Действие</td>
             </tr>
+        </thead>
             <tr>
                 {% for raw in raws %}
                 <td>{{ raw.num }}</td>
@@ -37,7 +38,7 @@
                 </td>
             </tr>
             {% endfor %}
-        </thead>
+       
     </table>
 </div>
 {% else %}
