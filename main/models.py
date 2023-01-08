@@ -39,7 +39,7 @@ class Change (models.Model):
     created_date = models.DateTimeField(default=timezone.now)  # когда была создана заявка
 
     def __str__(self):
-      return self.raw_current.layer +  ' ' + self.raw_current.num +  'на' + + self.raw_new.num 
+      return self.raw_current.layer +  ' ' + self.raw_current.num +  ' на '  + self.raw_new.num 
 
 
     def publish(self):

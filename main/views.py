@@ -19,7 +19,7 @@ from django.template import Context, Template
 def pdf_sku(request, sku_id):
         sku = Sku.objects.get(id=sku_id)
         response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="MK.pdf"'
+        response['Content-Disposition'] = 'attachment; filename="МК.pdf"'
         template = render_to_string('main/pdf_sku.html', {'sku': sku},)
         html = HTML(string=template,base_url=request.build_absolute_uri())
         result = html.write_pdf()

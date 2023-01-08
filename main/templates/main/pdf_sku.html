@@ -17,28 +17,25 @@
         border: 1px solid black;
       }
 
-    @bottom-right{
-        content:" Страница "
-    }
-
     body {
         font-family: "Alice-Regular";
         font-size: 20px
     }
     img {
-        height: 600px;
+        height: 650px;
     }
 </style>
 
 {% load static %}
 <body>
     <pdf:language name="ru">
+        
         <h2>Маршрутная карта 
             <br> {{ sku.type.name}}
             <br>{{sku.num}} {{sku.name}} </h2>
-        <br>
+        
         <h3>Вес продкции: {{sku.weight}} гр</h3>
-        <br>
+        
         <h3>Чертеж: </h3>
         {%if sku.photo%}
         <img src="{{sku.photo.url}}" alt=" "  >
