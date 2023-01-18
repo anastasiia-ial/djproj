@@ -18,7 +18,9 @@
                                 <h6 class="card-subtitle mb-2 text-muted">Слой: {{change.raw_current.layer}}</h6>
                             <form class="d-flex" method="POST" action=" {% url 'gen' change.id %} ">
                                 {% csrf_token %}
-                                <button class="btn btn-outline-success" type="submit" name = 'searched'>Поиск</button>
+                                <button class="btn btn-outline-success" type="submit" name = 'searched'>Поиск</button> 
+                                <div>   </div> 
+                                {% comment %} <a href="{% url 'delete_change' change.id %}" type="button" class="btn btn-outline-danger">Удалить</a> {% endcomment %}
                             </form>
                         </div>
                         <div class="card-footer">

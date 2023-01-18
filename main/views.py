@@ -37,7 +37,7 @@ def pdf_sku(request, sku_id):
 def search_sku(request):
     if request.method == "POST":
       searched = request.POST['searched']
-      sku = Sku.objects.filter(num__contains = searched)
+      sku = Sku.objects.filter(num__contains = searched.strip())
       return render(request, 'main/search_sku.html', {'searched':searched, 'sku':sku})
     else:
       return render(request, 'main/search_sku.html',{'searched':searched, 'sku':sku})
@@ -59,6 +59,10 @@ def delete_sku(request, sku_id):
     sku.delete()
     return redirect('list_sku')
 
+def delete_change(request, change_id):
+    change = Change.objects.get(id=change_id)
+    change.delete()
+    return redirect('status')
 
 def delete_raw(request, raw_id):
     raw = Raw.objects.get(id=raw_id)

@@ -7,20 +7,21 @@
 {% block content %}
     <br>
     {%if searched %}
-
+    
         <div class="container">
-            <h2 style="text-align: center;"> Поиск артикула готовой продуции {{searched}}<br></h2>
+            <h2 style="text-align: center;"> Поиск артикула готовой продуции <strong>{{searched}} </strong><br></h2>
 
             <table class="table table-bordered">
-             
-                    <thead>
-                        <tr style="font-weight:bold">
-                            <td>Артикул</td>
-                            <td>Наименование</td>
-                            <td>Действие</td>
-                        </tr>
-                        <tr>  
-                             {% for sku in sku %}
+
+                <thead>
+                    <tr style="font-weight:bold">
+                        <td>Артикул</td>
+                        <td>Наименование</td>
+                        <td>Действие</td>
+                    </tr>
+                    <tr>
+                        {% for sku in sku %}
+                     
                             <td>{{sku.num}} </td>
                             <td>{{sku.name}}</td>
                             <td align="center">
@@ -31,13 +32,10 @@
                                     <a href="{% url 'change' sku.id %}" type="button" class="btn btn-outline-primary">Просмотреть изменения, которые нужно внести</a>
                                 </div>
                             </td>
-                        </tr>
-                    </div>
-
-                {% endfor %}
-
+                            </tr>
+                            </div>
+                        {% endfor %}
     {% else %}
-
         <div class="container">
             <h1 style="text-align: center;"> Артикул не найден<br></h2>
         </div>

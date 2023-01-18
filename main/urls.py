@@ -20,5 +20,5 @@ urlpatterns = [
     path('add', views.add, name='add'),
     path('status', views.status, name='status'),
     path('change/<sku_id>', views.change, name='change'),
-
+    path('delete_change/<change_id>', views.delete_change, name='delete_change'),   
 ]

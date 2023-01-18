@@ -9,12 +9,14 @@
     <div class="container">
         <thead>
             <h2 style="text-align: center;"> Поиск ГП с {{change.raw_current}}<br></h2>
-            <table class="table table-bordered">
-                <tr style="font-weight:bold">
-                    <td>Артикул</td>
-                    <td>Наименование</td>
-                    <td>Действие</td>
-                </tr>
+            <table class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr style="font-weight:bold">
+                        <td>Артикул</td>
+                        <td>Наименование</td>
+                        <td>Действие</td>
+                    </tr>
+                </thead>
                 <tr>
                     {% for sku in sku %}
                         <td>{{sku.num}} </td>
@@ -27,8 +29,10 @@
                                 <a href="{% url 'change' sku.id %}" type="button" class="btn btn-outline-primary">Просмотреть изменения, которые нужно внести</a>
                             </div>
                         </td>
-                        </tr>
-                        </div>
-                    {% endfor %}
-
+                     
+                  
+                </tr>
+                {% endfor %}
+            </table>
+                </div>
 {% endblock %}
